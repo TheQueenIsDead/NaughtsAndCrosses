@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>O's & X's</title>
+    <link rel="stylesheet" type="text/css" href="./style.css"></script>
+  </head>
+  <body>
+
+
+
+  <div id="game">
+    <div id="endGame" v-if="game_won">
+      <h1> {{ current_char }}  won the game!</h1>
+      <button v-on:click="resetGame">Play Again</button>
+    </div>
+    <table>
+      <!-- Generate a table for the game with appropriate rows and columns -->
+      <tr v-for="r in rows">
+        <td v-for="c in cols" v-on:click="setCharacter(r, c)">
+            {{ getCharacter(r, c) }}
+        </td>
+      </tr>
+    </table>
+  </div>
+
+
+    <script src="https://unpkg.com/vue"></script>
+    <script type="text/javascript" src="./app.js"></script>
+  </body>
+</html>
