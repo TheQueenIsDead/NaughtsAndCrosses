@@ -6,6 +6,7 @@ var game = new Vue({
     cols: 3,
     current_char: "X",
     game_won: false,
+    end_text: "",
     game_board: [
       [
         {square: "1", character: "-"},
@@ -36,10 +37,22 @@ var game = new Vue({
         if (line[0] == line[1] &&
           line[1] == line[2]){
           console.log("Setting game_won");
-          this.game_won = true;
           this.swapChars();
+          this.end_text = this.current_char + ' won the game!';
+          this.game_won = true;
         }
       }
+    },
+    boardFull: function(){
+      let full = true;
+      for (var r = 0; r < this.rows; r++) {
+        for (var c = 0; c < this.cols; c++) {
+            if(this.game_board[r][c]['character'] == "-"){
+              full = false;
+            }
+        }
+      }
+      return full;
     },
     checkWin: function(){
 
@@ -94,6 +107,11 @@ var game = new Vue({
           if(!this.game_won){
             this.checkLine(line);
           }
+      }
+
+      if (!this.game_won && this.boardFull()){
+        this.end_text = "It's a draw!"
+        this.game_won = true;
       }
     },
     getCharacter: function(row, col){

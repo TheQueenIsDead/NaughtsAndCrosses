@@ -4,6 +4,7 @@
   <head>
     <title>O's & X's</title>
     <link rel="stylesheet" type="text/css" href="./style.css"></script>
+    <meta charset="UTF-8">
   </head>
   <body>
 
@@ -11,7 +12,7 @@
 
   <div id="game">
     <div id="endGame" v-if="game_won">
-      <h1> {{ current_char }}  won the game!</h1>
+      <h1> {{ end_text }}</h1>
       <button v-on:click="resetGame">Play Again</button>
     </div>
     <table>
